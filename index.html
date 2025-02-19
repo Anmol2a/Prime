@@ -74,8 +74,8 @@
               }
           },
           streaming: {
-              bufferingGoal: 2, // Reduce initial buffering time
-              rebufferingGoal: 1, // Minimize rebuffering
+              bufferingGoal: 20, // Reduce initial buffering time
+              rebufferingGoal: 10, // Minimize rebuffering
               abr: { enabled: true } // Enable adaptive bitrate streaming
           }
       });
