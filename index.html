@@ -1,26 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MPD ClearKey Player</title>
-    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script src="https://cdn.jwplayer.com/libraries/Z79JsmAO.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        #player {
-            max-width: 800px;
-            margin: 20px auto;
-        }
-        .telegram-btn {
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #player { max-width: 800px; margin: 20px auto; }
+        .telegram-button {
             display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
             background-color: #0088cc;
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
@@ -28,32 +21,25 @@
     </style>
 </head>
 <body>
-    <h2>MPD ClearKey JWPlayer</h2>
+    <h2>TG-ANMOL STREAMING PRIME</h2>
     <div id="player"></div>
-    <a href="https://t.me/+e6G48oujQuExOTg1" class="telegram-btn" target="_blank">Join Telegram</a>
+    
     <script>
-        alert("Join our Telegram group for updates!");
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            if (typeof jwplayer === "undefined") {
-                console.error("JWPlayer failed to load. Check your license key and internet connection.");
-                return;
-            }
-            
-            jwplayer("player").setup({
-                file: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
-                type: "dash",
-                drm: {
-                    clearkey: {
-                        "key-id": "ae26845bd33038a9c0774a0981007294",
-                        "key": "63ac662dde310cfb4cc6f9b43b34196d"
-                    }
-                },
-                width: "100%",
-                aspectratio: "16:9",
-                autostart: true
-            });
+        jwplayer("player").setup({
+            file: "https://a201aivottlinear-a.akamaihd.net/OTTB/pdx-nitro/live/clients/dash/enc/wr8i0xhnut/out/v1/190f1d69a3d5467f8fb7d9df4339bc49/cenc.mpd",
+            type: "dash",
+            drm: {
+                clearkey: {
+                    "key-id": "cb8daf414566aa17d06f8294f3f3b444",
+                    "key": "89d58908a57d70ef87bf16c9b5821ca2"
+                }
+            },
+            width: "100%",
+            aspectratio: "16:9",
+            autostart: false
         });
     </script>
+    
+    <a href="https://t.me/+e6G48oujQuExOTg1" target="_blank" class="telegram-button">Join Telegram</a>
 </body>
 </html>
