@@ -1,142 +1,58 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TG_ANMOL_LINKS</title>
-<script src="https://content.jwplatform.com/libraries/Z79JsmAO.js"></script>
-<style>
-  body {
-      background-color: black;
-      color: white;
-      text-align: center;
-  }
-  #videoContainer {
-      width: 80%;
-      margin: auto;
-  }
-  video {
-      width: 100%;
-      max-height: 80vh;
-  }
-  #telegramButton {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 378px;
-      height: 50px;
-      background: linear-gradient(90deg, darkblue, #001f3f);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 20px auto;
-      font-size: 18px;
-      font-weight: bold;
-  }
-  #qualitySelect {
-      margin-top: 10px;
-      padding: 8px;
-      font-size: 16px;
-      background-color: #001f3f;
-      color: white;
-      border: none;
-      border-radius: 5px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPD ClearKey Player</title>
+    <script src="https://content.jwplatform.com/libraries/Z79JsmAO.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #player {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .telegram-btn {
+            display: inline-block;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-
-<h1>TEAMROHIT45OFFICAL Streaming</h1>
-
-<div id="videoContainer">
-  <video id="video" controls autoplay></video>
-  <select id="qualitySelect" onchange="changeQuality(this.value)">
-    <option value="auto">Auto Quality</option>
-  </select>
-</div>
-
-<script>
-  async function initShakaPlayer() {
-      if (!shaka.Player.isBrowserSupported()) {
-          console.error("Error: Your browser does not support Shaka Player.");
-          return;
-      }
-
-      const video = document.getElementById("video");
-      const player = new shaka.Player(video);
-
-      // Configure DRM (ClearKey)
-      player.configure({
-          drm: {
-              clearKeys: {
-                  "cb8daf414566aa17d06f8294f3f3b444": "89d58908a57d70ef87bf16c9b5821ca2"
-              }
-          },
-          streaming: {
-              bufferingGoal: 20, // Reduce initial buffering time
-              rebufferingGoal: 10, // Minimize rebuffering
-              abr: { enabled: true } // Enable adaptive bitrate streaming
-          }
-      });
-
-      try {
-          await player.load("https://aba5sdmaaaaaaaamjyr2xiy4rbicb.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/zqhtvqjquq/out/v1/190f1d69a3d5467f8fb7d9df4339bc49/cenc.mpd" 
-
-");
-          console.log("Video loaded successfully!");
-
-          // Populate quality selection dropdown
-          updateQualityOptions(player);
-      } catch (error) {
-          console.error("Error loading video:", error);
-      }
-  }
-
-  function updateQualityOptions(player) {
-      const tracks = player.getVariantTracks();
-      const qualitySelect = document.getElementById("qualitySelect");
-      qualitySelect.innerHTML = `<option value="auto">Auto Quality</option>`;
-
-      tracks.forEach((track) => {
-          let label = `${track.height}p (${track.bandwidth} bps)`;
-          let option = document.createElement("option");
-          option.value = track.id;
-          option.textContent = label;
-          qualitySelect.appendChild(option);
-      });
-  }
-
-  function changeQuality(trackId) {
-      const player = shaka.Player.getInstance();
-      if (!player) return;
-
-      if (trackId === "auto") {
-          player.configure({ abr: { enabled: true } }); // Enable Auto
-      } else {
-          player.configure({ abr: { enabled: false } }); // Disable Auto
-          player.selectVariantTrack(player.getVariantTracks().find(track => track.id == trackId), true);
-      }
-  }
-
-  document.addEventListener("DOMContentLoaded", initShakaPlayer);
-</script>
-
-<script>
-  if (confirm("Join Our Telegram Channel?")) { 
-      window.location.href = "https://t.me/+3aJFsq2EJLg4NzI1"; 
-  }
-</script>
-
-<div id="telegramButton" onclick="redirectToTelegram()">
-  Join Telegram
-</div>
-
-<script>
-  function redirectToTelegram() {
-      window.location.href = "https://t.me/+e6G48oujQuExOTg1";
-  }
-</script>
-
+    <h2>MPD ClearKey JWPlayer</h2>
+    <div id="player"></div>
+    <a href="https://t.me/+e6G48oujQuExOTg1" class="telegram-btn" target="_blank">Join Telegram</a>
+    <script>
+        alert("Join our Telegram group for updates!");
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof jwplayer === "undefined") {
+                console.error("JWPlayer failed to load. Check your license key and internet connection.");
+                return;
+            }
+            
+            jwplayer("player").setup({
+                file: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
+                type: "dash",
+                drm: {
+                    clearkey: {
+                        "key-id": "ae26845bd33038a9c0774a0981007294",
+                        "key": "63ac662dde310cfb4cc6f9b43b34196d"
+                    }
+                },
+                width: "100%",
+                aspectratio: "16:9",
+                autostart: true
+            });
+        });
+    </script>
 </body>
 </html>
