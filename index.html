@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clearkey MPD JW Video Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/shaka-player@3.0.0/dist/shaka-player.compiled.js"></script>
+  <style>
+    #video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+    }
+    #video-player {
+      width: 100%;
+      height: 450px;
+    }
+    .telegram-btn {
+      display: inline-block;
+      background-color: #0088cc;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .telegram-btn:hover {
+      background-color: #0077b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="video-container">
+    <video id="video-player" controls></video>
+    <button class="telegram-btn" onclick="joinTelegram()">Join Telegram</button>
+  </div>
+
+  <script>
+    // Initialize Shaka Player
+    function initializePlayer() {
+      const video = document.getElementById('video-player');
+      const player = new shaka.Player(video);
+
+      // Clearkey DRM Configuration (Use a valid key)
+      const clearkeyConfig = {
+        clearkey: {
+          '4a5191838da17a2ab771f4258fad347f': '54b7a084437459368eed07d182ad644c' // Replace with actual Clearkey
+        }
+      };
+      player.configure({
+        drm: clearkeyConfig
+      });
+
+      // Load the MPD manifest URL
+      player.load('https://aba5sdmaaaaaaaamidug47tdi5buy.otte.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/l0phze3ehz/out/v1/fe9782633a364a6a84c9410f26d9b2c4/cenc.mpd').then(function() {
+        console.log('The video has been loaded!');
+      }).catch(function(error) {
+        console.error('Error loading video: ', error);
+      });
+
+      // Quality options: Adding a simple control to switch between different quality levels
+      player.addEventListener('loadedmetadata', function() {
+        const qualityOptions = player.getAvailableVariants().map(function(variant) {
+          return variant.height + 'p';
+        });
+
+        const qualitySelector = document.createElement('select');
+        qualitySelector.innerHTML = qualityOptions.map(function(option) {
+          return `<option value="${option}">${option}</option>`;
+        }).join('');
+
+        qualitySelector.addEventListener('change', function(event) {
+          const selectedQuality = event.target.value;
+          const selectedVariant = player.getAvailableVariants().find(function(variant) {
+            return variant.height + 'p' === selectedQuality;
+          });
+          player.selectVariant(selectedVariant);
+        });
+
+        document.body.appendChild(qualitySelector);
+      });
+    }
+
+    // Join Telegram Group (Change the URL to your actual group link)
+    function joinTelegram() {
+      window.open('https://t.me/+e6G48oujQuExOTg1', '_blank');
+    }
+
+    // Initialize the video player when the page is loaded
+    window.onload = function() {
+      initializePlayer();
+    };
+  </script>
+</body>
+</html>
 
